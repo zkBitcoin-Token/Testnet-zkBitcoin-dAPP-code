@@ -1,0 +1,5 @@
+yarn
+yarn install
+yarn serve
+
+https://era.zksync.io/docs/dev/building-on-zksync/hello-world.html#set-up-the-project

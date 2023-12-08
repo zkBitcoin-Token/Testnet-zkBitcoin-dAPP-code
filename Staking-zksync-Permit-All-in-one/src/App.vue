@@ -420,9 +420,9 @@ These are admin functions below
 
 <br>
         Contracts Listed below<br>
-           <h2>zkBitcoin Contract: {{ (ABAS_CONTRACT_ADDRESS2) }} </h2>
+           <h2>zkBitcoin Contract: {{ (zkBTC_CONTRACT_ADDRESS2) }} </h2>
            <h2>Auctions Contract: {{ (AUCTION_CONTRACT_ADDRESS2) }} </h2>
-           <h2>Staking Contract: {{ (Staking_AbAS_CONTRACT_ADDRESS2) }} </h2>
+           <h2>Staking Contract: {{ (Staking_zkBTC_CONTRACT_ADDRESS2) }} </h2>
            <h2>LP Contract: {{ (LP_CONTRACT_ADDRESS2) }} </h2>
            <h2>0xBitcoin Contract: {{ (ZeroxBitcoin_addresss2) }} </h2>
            <h2>Greeter Contract: {{ (GREETER_CONTRACT_ADDRESS2) }} </h2>
@@ -473,11 +473,12 @@ const ZeroxBitcoin__CONTRACT_ABI = require("./LPFaucetToken.json");
 const GREETER_CONTRACT_ADDRESS = "0xf5ADD0c27C4a15690f48F54E2D64cD72E204b6Ad"; // TODO: Add smart contract address
 
 //INPUT HERE FOR DEPLOY DATAconst 
-const LP_CONTRACT_ADDRESS = "0x15A35DA74E8D23DA36ae4172F8062382AF2CeAB7"
-const Staking_AbAS_CONTRACT_ADDRESS = "0xd34ADB8959dc75d00A552CA5BF453d0f63a73d2C"
-const ABAS_CONTRACT_ADDRESS = "0xf64EDc5D289014140FC7E7bA0aF5F5d98F00deFA"
-const ZeroxBitcoin_addresss = "0xA24B22c46ecCC75fa01E0E3250a7Bac3e39CA238"
-const AUCTION_CONTRACT_ADDRESS = "0xcf44fAdd093f0D370cC007c7D25fA413C962b21a"
+const LP_CONTRACT_ADDRESS = "0xA7E8FEfF5B8E4dC757ec2061D5EB94021D18D6f7"
+const Staking_zkBTC_CONTRACT_ADDRESS = "0xB771d3992239781DC63096AF071Bb5cd02F3953d"
+const zkBTC_CONTRACT_ADDRESS = "0x98599817C05ef6D7f75D88e181873EB26a839475"
+const ZeroxBitcoin_addresss = "0xa0E1d12603EA3E256aA52AaB96271e97dC66ED7a"
+const AUCTION_CONTRACT_ADDRESS = "0x2a493eF6dea9B65cCcd5c22f7a7D87e88f1D6372"
+
 
 
 
@@ -491,7 +492,7 @@ console.log("TEST", AUCTION_CONTRACT_ABI);
 console.log("22222", AUCTION_CONTRACT_ADDRESS);
 console.log("TEST", ABAS_CONTRACT_ABI);
 console.log("Staking_AbAS_CONTRACT_ABI", Staking_AbAS_CONTRACT_ABI);
-console.log("Staking_AbAS_CONTRACT_ADDRESS", Staking_AbAS_CONTRACT_ADDRESS);
+console.log("Staking_zkBTC_CONTRACT_ADDRESS", Staking_zkBTC_CONTRACT_ADDRESS);
 console.log("LP_CONTRACT_ADDRESS", LP_CONTRACT_ADDRESS);
 console.log("LP_CONTRACT_ABI", LP_CONTRACT_ABI);
 export default {
@@ -588,7 +589,7 @@ export default {
     );
 
      this.contractABAS = new Contract(
-        ABAS_CONTRACT_ADDRESS,
+        zkBTC_CONTRACT_ADDRESS,
         ABAS_CONTRACT_ABI,
         this.signer
     );
@@ -606,7 +607,7 @@ export default {
     );
 
      this.contractABASStaking = new Contract(
-        Staking_AbAS_CONTRACT_ADDRESS,
+        Staking_zkBTC_CONTRACT_ADDRESS,
         Staking_AbAS_CONTRACT_ABI,
         this.signer
     );
@@ -627,7 +628,7 @@ export default {
     async getApprovedLPforContract() {
       const userAddy = await this.getAddress();
 console.log("userAddy", userAddy );
-     return await this.contractLPToken.allowance(userAddy, Staking_AbAS_CONTRACT_ADDRESS);
+     return await this.contractLPToken.allowance(userAddy, Staking_zkBTC_CONTRACT_ADDRESS);
     },
     async getLPBalance() {
       const userAddy = await this.getAddress();
@@ -694,11 +695,11 @@ console.log("userAddy", userAddy );
 
      var time = await this.contract2.nextDayTime();
      console.log("TME ", time.toString());
-        this.ABAS_CONTRACT_ADDRESS2 = ABAS_CONTRACT_ADDRESS;
+        this.zkBTC_CONTRACT_ADDRESS2 = zkBTC_CONTRACT_ADDRESS;
         this.LP_CONTRACT_ADDRESS2 = LP_CONTRACT_ADDRESS;
         this.ZeroxBitcoin_addresss2 = ZeroxBitcoin_addresss
         this.AUCTION_CONTRACT_ADDRESS2 =AUCTION_CONTRACT_ADDRESS;
-        this.Staking_AbAS_CONTRACT_ADDRESS2 =Staking_AbAS_CONTRACT_ADDRESS;
+        this.Staking_zkBTC_CONTRACT_ADDRESS2 =Staking_zkBTC_CONTRACT_ADDRESS;
         this.GREETER_CONTRACT_ADDRESS2 =GREETER_CONTRACT_ADDRESS;
      const now = Date.now(); // Unix timestamp in milliseconds
      var currentTime = (now / 1000).toFixed(0);
@@ -1019,7 +1020,7 @@ console.log("22221BOGIE2", userAddy );
     async GetPermitData() {
     this.txStatus = 1;
       var userAddy2 = await this.getAddress()
-	const spender = Staking_AbAS_CONTRACT_ADDRESS;
+	const spender = Staking_zkBTC_CONTRACT_ADDRESS;
 	var test = 123050000*10**18;
       console.log("PERMITY STUFF VALUE: ",test);
 	const value =  parseFloat(test).toLocaleString().replace(/,/g, '');
@@ -1123,7 +1124,7 @@ console.log("PERMITY SIGNATURE r: ", r);
     async initilizeAuction() {
     this.txStatus = 1;
     try {
-        const txHandle = await this.contract2.zSetUP1(ABAS_CONTRACT_ADDRESS);
+        const txHandle = await this.contract2.zSetUP1(zkBTC_CONTRACT_ADDRESS);
 
         this.txStatus = 2;
 
@@ -1334,7 +1335,7 @@ const bigNumber = BigNumber.from(utils.parseUnits(amountToStake, 18));
      
 console.log("Testing12321312123", amountToStake);
 console.log("Testing12321312123", bigNumber);
-const txHandle = await this.contractLPToken.approve(Staking_AbAS_CONTRACT_ADDRESS, (bigNumber).toString());
+const txHandle = await this.contractLPToken.approve(Staking_zkBTC_CONTRACT_ADDRESS, (bigNumber).toString());
 
         this.txStatus = 2;
 
@@ -1545,7 +1546,7 @@ console.log("222212", userAddy );
     this.txStatus = 1;
     try {
       
-        const txHandle = await this.contractABAS.zinit(AUCTION_CONTRACT_ADDRESS, Staking_AbAS_CONTRACT_ADDRESS);
+        const txHandle = await this.contractABAS.zinit(AUCTION_CONTRACT_ADDRESS, Staking_zkBTC_CONTRACT_ADDRESS);
 
         this.txStatus = 2;
 
